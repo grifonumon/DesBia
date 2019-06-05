@@ -1,0 +1,100 @@
+html {
+    height: 100%;
+    background-image: linear-gradient(to left bottom, white 0%, grey 100%);
+}
+
+img {
+    max-height: 200px;
+    max-width: 600px;
+    
+}
+
+body {
+    margin: 2px;
+
+}
+
+
+.sandbox-titlu {
+    padding: 25px 1px 2px 1px;
+}
+
+.heading-titlu {
+
+    margin: auto;
+    text-align: center;
+    position: relative;
+}
+
+
+h1 {
+    color: #fff;
+    font-family: 'Cardo', serif;
+    font-size: 1.5em;
+    font-weight: normal;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    line-height: 2.2em;
+}
+
+em {
+    font-family: 'EB Garamond', serif;
+    font-size: 3.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    font-style: normal;
+    padding-top: 0.1em;
+    text-shadow: 0.07em 0.07em 0 rgba(0, 0, 0, 0.1);
+
+    &::before,
+    &::after {
+        content: "§";
+        display: inline-block;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        opacity: 0.2;
+        margin: 0 0.6em;
+        font-size: 0.5em;
+    }
+
+}
+
+
+
+/*menu*/
+nav {
+    max-width: 1300px;
+    mask-image: linear-gradient(90deg, rgba(200, 25, 150, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+    margin: 0 auto;
+    padding: 10px 0px;
+}
+
+nav ul {
+    text-align: center;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    padding: 18px;
+    font-family: "Open Sans";
+    text-transform: uppercase;
+    color: slategrey;
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+}
+
+nav ul li a:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.1);
+    color: saddlebrown;
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>LIBRARIE</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+header {
+  background-color: #777;
+  padding: 30px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+}
+
+nav {
+  float: left;
+  width: 30%;
+  height: 500px; 
+  background: #ccc;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+  height: 500px; 
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+.bulina {
+  background-color: blue;
+  color: white;
+  margin: 2px;
+  padding: 5px;
+}
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: 100px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+</style>
+</head>
+<body>
+
+
+<header>
+	<h2 style="text-align:center">Librarie Online</h2>
+	<p><a href="comenzi.html"><img  align="right" alt="Cos de cumparaturi" width="60" height="60" src="cos.png"></a></p>
+	<p align="right"><a href="Inregistrare.html">Inregistrare</a></p>
+	
+	<p align="right"><a href="Autentificare.html">Autentificare</a></p>
+				
+</header>
+
+<section>
+  <nav style=" text-align:center">
+    <br><br><br><br><br><br>
+    <ul>
+      <li><a href="Cosmologie.htm">Cosmologie</a></li>
+      <li><a href="filozofie.html">Filozofie</a></li>
+    </ul>
+  </nav>
+  
+  <article>
+	<h4 style=" text-align:center"> Recomandari</h4>
+    	<table>
+		<tr>
+			<th>
+				<div>
+					<div class="popup" onclick="myFunction()"><img alt="Brief Answers to the Big Questions" width="120" height="185" src="1.jpeg"><span class="popuptext" id="myPopup"><img  width="120" height="185" src="quizz.jpg"></span>
+					</div>
+					<a href="."><h6 style="height:26px;overflow:hidden;>">Brief Answers to the Big Questions</h6></a>
+					<span>26.18lei <del>34.9lei</del></span>
+					<div class="popup" onclick="myFunction()">Vezi detalii<span class="popuptext" id="myPopup"><img  width="120" height="185" src="quizz.jpg"></span>
+					</div>
+					<button class="bulina">-25%</button>
+				</div>
+          
+			</th>
+			<th>
+				<div>
+					<div class="popup" onclick="myFunction()"><img alt="Introduction to Cosmology" width="120" height="185" src="2.jpg"><span class="popuptext" id="myPopup"><img  width="120" height="185" src="quizz.jpg"></span>
+					</div>
+					<a href="."><h6 style="height:26px;overflow:hidden;">Introduction to Cosmology</h6></a>
+					<span>60lei <del> 42lei</span>		
+					<div class="popup" onclick="myFunction()">Vezi detalii<span class="popuptext" id="myPopup"><img width="120" height="185" src="quizz.jpg"></span>
+					</div>
+					<button class="bulina">-30%</button>
+				</div>
+         		</th>
+			<th>
+				<div>
+					<div class="popup" onclick="myFunction()"><img alt="We have no ideea" class="lazy" width="120" height="185" src="6.jpg"><span class="popuptext" id="myPopup"><img  width="120" height="185" src="quizz.jpg"></span>
+					</div>
+					<a href="."><h6 style="height:26px;overflow:hidden;">We have no ideea</h6></a>
+					<span>24lei <del>30lei</del></span>		
+					<div class="popup" onclick="myFunction()">Vezi detalii<span class="popuptext" id="myPopup"><img width="120" height="185" src="quizz.jpg"></span>
+					</div>
+					<button class="bulina">-20%</button>
+				</div>
+         		</th>
+			
+			<th>
+				<div>
+					<div class="popup" onclick="myFunction()"><img alt="Introduction to Cosmology" width="120" height="185" src="2.jpg"><span class="popuptext" id="myPopup"><img  width="120" height="185" src="quizz.jpg"></span>
+					</div>
+					<a href="."><h6 style="height:26px;overflow:hidden;">Introduction to Cosmology</h6></a>
+					<span>60lei <del> 42lei</span>		
+					<div class="popup" onclick="myFunction()">Vezi detalii<span class="popuptext" id="myPopup"><img width="120" height="185" src="quizz.jpg"></span>
+					</div>
+					<button class="bulina">-30%</button>
+				</div>
+         		</th>
+		</tr>
+	</table>
+  </article>
+</section>
+	
+
+	<script>
+	// When the user clicks on div, open the popup
+	function myFunction() {
+  		var popup = document.getElementById("myPopup");
+  		popup.classList.toggle("show");
+	}
+	</script>
+<footer>
+  <p>Contact</p>
+  <p>Numar de telefon: 0250800800</p>
+  <p style="margin-left="""><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2788.7942648726093!2d25.596616215510707!3d45.6549531791036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b84b9df7281%3A0x78c7f0007ea84282!2zU3RyYWRhIFVuaXZlcnNpdMSDyJtpaSAxLCBCcmHImW92!5e0!3m2!1sro!2sro!4v1551723104770" 
+ width="1300" height="400"  frameborder="0" style="border:0" allowfullscreen></iframe>
+ </p>
+</footer>
+
+</body>
+</html>

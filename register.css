@@ -1,0 +1,15 @@
+.w3-col {
+    width: 50px;
+}
+
+.simple-form {
+    margin: 50px 0px;
+}
+
+body {
+    background-image: url(background.jpg);
+}
+
+* {
+    box-sizing: border-box;
+}
