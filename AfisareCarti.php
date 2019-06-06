@@ -6,7 +6,31 @@ session_destroy();
 //check if card button have been submited
 if(filter_input(INPUT_POST, 'add_to_cart')){
 	if(isset($_SESSION['shopping_cart'])){
+	    //keep track of number of item in cart
+		$count = count($_SESSION['shopping_cart']);
 
+		//create sequental array to match array key to products id's
+		$product_ids = array_column($_SESSION['shopping_cart'], 'id');
+		console.log($product_ids);
+		console.log(filter_input(INPUT_GET, 'id'));
+		if(!in_array(filter_input(INPUT_GET, 'id'),$product_ids)){
+			$_SESSION['shopping_cart'][$count] = array(
+				'id' => filter_input(INPUT_GET, 'id'),
+				'nume' => filter_input(INPUT_POST, 'nume'),
+				'pret' => filter_input(INPUT_POST, 'pret'),
+				'quantity' => filter_input(INPUT_POST, 'quantity')
+			);
+		}
+		else{
+			//match array key to the existing one
+			for ($i=0; $i < count($product_ids); $i++) { 
+				if($product_ids[$i] == filter_input(INPUT_GET, 'id')){
+					//add item quantity to the existing product in the array
+
+					$_SESSION['shopping_cart'][$i]['quantity'] += filter_input((INPUT_POST), 'quantity');
+					}
+				}
+			}
 	}
 	else{ //if shopping cart doesn't exist, create first product with array key 0
 		//create array using submitted from data, start from key 0
@@ -14,7 +38,8 @@ if(filter_input(INPUT_POST, 'add_to_cart')){
 		'id' => filter_input(INPUT_GET, 'id'),
 		'nume' => filter_input(INPUT_POST, 'nume'),
 		'pret' => filter_input(INPUT_POST, 'pret'),
-		'quantity' => filter_input(INPUT_POST, 'quantity'));
+		'quantity' => filter_input(INPUT_POST, 'quantity')
+		);
 	}
 }
 pre_r($_SESSION);
@@ -40,7 +65,7 @@ function pre_r($array){
 			<?php
 
 				$connect = mysqli_connect('localhost', 'root', '', 'cart');
-				$query = 'SELECT * FROM carti ORDER by id ASC';
+				$query = 'SELECT * FROM carti WHERE categorie = "filozofie"  ORDER by id ASC';
 
 				$result = mysqli_query($connect, $query);
 				if($result):
@@ -48,14 +73,14 @@ function pre_r($array){
 						while($product = mysqli_fetch_assoc($result)):
 							?>
 								<div class="col-sm-4 col-md-3">
-									<form method="post" action="index.php?action=add&id= <?php echo $product['id']; ?>">
+									<form method="post" action="AfisareCarti.php?action=add&id=<?php echo $product['id']; ?>">
 										<div class="products" style="height: 550px">
 											<img src="<?php echo $product['imagine'];?>.jpg" class="img-responsive" />
 											<h4 class="text-info" style="text-align: center;"><?php echo $product['nume']; ?></h4>
 											<h4 style="text-align: right;"><?php echo $product['pret']; ?>Lei</h4>
-											<input type="text" name="cantitate" class="form-control" value="1" />
-											<input type="hidden" name="name" value="<?php echo $product['nume'];?>" />
-											<input type="hidden" name="price" value="<?php echo $product['pret'];?>" />
+											<input type="text" name="quantity" class="form-control" value="1" />
+											<input type="hidden" name="nume" value="<?php echo $product['nume'];?>" />
+											<input type="hidden" name="pret" value="<?php echo $product['pret'];?>" />
 											<div style="position:absolute;  bottom:5%; left: 28%"><input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
 													value="Adauga in cos" /></div>
 										</div>
@@ -66,6 +91,61 @@ function pre_r($array){
 					endif;
 				endif;
 			?>
+			<div style="clear:both"></div>
+			<br />
+			<div class="table-responsive">
+				<table class = "table">
+					<tr><th colspan="5"><h3>Detali comanda</h3></th></tr>
+					<tr>
+						<th width="40%">Nume Produs</th>
+						<th width="10%">Cantitate</th>
+						<th width="20%">Pret</th>
+						<th width="15%">Total</th>
+						<th width="5%">Actiune</th>
+					</tr>
+					<?php
+						if(!empty($_SESSION['shopping_cart'])):
+
+							$total = 0;
+
+							foreach ($_SESSION['shopping_cart'] as $key => $product):
+					?>
+							<tr>
+								<td><?php echo $product['nume'];?></td>
+								<td><?php echo $product['quantity'];?></td>
+								<td>$ <?php echo $product['pret'];?></td>
+								<td>$ <?php echo number_format($product['quantity'] * $product['pret'],2);?></td>
+								<td>
+									<a href="AfisareCarti.php?action=delete$id=<?php echo $product['id']; ?>">
+										<div class="btn-danger">Remove</div>
+									</a>
+								</td>
+							</tr>
+							<?php 
+								$total = $total + ($product['quantity'] * $product['pret']);
+									endforeach;
+							?>
+							<tr>
+								<td colspan = "3" align="right">Total </td>
+								<td align="right">$<?php echo number_format($total,2);?></td>
+								<td></td>
+							</tr>
+							<tr>
+								<!-- Show checkout button only if shoping cart is not empty-->
+								<td colspan="5">
+									<?php
+										if(isset($_SESSION['shopping_cart'])):
+										if(count($_SESSION['shopping_cart']) > 0):
+									  ?>
+									   <a href="#" class="button">Checkout</a>
+									   <?php endif; endif;?>
+								</td>
+							</tr>
+					<?php 
+						endif;
+					?>
+				</table>
+			</div>
 
 		</div>
 	</body>
