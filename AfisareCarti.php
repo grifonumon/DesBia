@@ -1,7 +1,7 @@
 <?php
 session_start();
 $product_ids = array();
-session_destroy();
+//session_destroy();
 
 //check if card button have been submited
 if(filter_input(INPUT_POST, 'add_to_cart')){
@@ -11,8 +11,8 @@ if(filter_input(INPUT_POST, 'add_to_cart')){
 
 		//create sequental array to match array key to products id's
 		$product_ids = array_column($_SESSION['shopping_cart'], 'id');
-		console.log($product_ids);
-		console.log(filter_input(INPUT_GET, 'id'));
+
+        
 		if(!in_array(filter_input(INPUT_GET, 'id'),$product_ids)){
 			$_SESSION['shopping_cart'][$count] = array(
 				'id' => filter_input(INPUT_GET, 'id'),
@@ -22,6 +22,7 @@ if(filter_input(INPUT_POST, 'add_to_cart')){
 			);
 		}
 		else{
+           console_log(filter_input(INPUT_GET, 'id'));
 			//match array key to the existing one
 			for ($i=0; $i < count($product_ids); $i++) { 
 				if($product_ids[$i] == filter_input(INPUT_GET, 'id')){
@@ -35,19 +36,39 @@ if(filter_input(INPUT_POST, 'add_to_cart')){
 	else{ //if shopping cart doesn't exist, create first product with array key 0
 		//create array using submitted from data, start from key 0
 	$_SESSION['shopping_cart'][0] = array(
+        
 		'id' => filter_input(INPUT_GET, 'id'),
 		'nume' => filter_input(INPUT_POST, 'nume'),
 		'pret' => filter_input(INPUT_POST, 'pret'),
 		'quantity' => filter_input(INPUT_POST, 'quantity')
-		);
+		);echo 'CreatListaNoua';
 	}
 }
-pre_r($_SESSION);
+
+if(filter_input(INPUT_GET, 'action') == 'delete'){
+	//loop throgh all product and check id
+	foreach ($_SESSION['shopping_cart'] as $key => $product) {
+		if($product['id'] == filter_input(INPUT_GET, 'id')){
+			unset($_SESSION['shopping_cart'][$key]);
+		}
+	}
+	//reset array key so they mach with $product_ids numeric array
+	$_SESSION['shopping_cart'] = array_values($_SESSION['shopping_cart']);
+}
+
+
+//pre_r($_SESSION);
 
 function pre_r($array){
 	echo '<pre>';
 	print_r($array);
 	echo '</pre>';
+}
+
+function console_log( $data ){
+  echo '<script>';
+  echo 'console.log('. json_encode( $data ) .')';
+  echo '</script>';
 }
 ?>
 
@@ -60,12 +81,12 @@ function pre_r($array){
 	</head>
 	<body>
 		<div class="container">
-			
+            <div class="row">
 		
 			<?php
 
 				$connect = mysqli_connect('localhost', 'root', '', 'cart');
-				$query = 'SELECT * FROM carti WHERE categorie = "filozofie"  ORDER by id ASC';
+				$query = 'SELECT * FROM carti  ORDER by id ASC';
 
 				$result = mysqli_query($connect, $query);
 				if($result):
@@ -91,6 +112,7 @@ function pre_r($array){
 					endif;
 				endif;
 			?>
+                </div>
 			<div style="clear:both"></div>
 			<br />
 			<div class="table-responsive">
@@ -113,8 +135,8 @@ function pre_r($array){
 							<tr>
 								<td><?php echo $product['nume'];?></td>
 								<td><?php echo $product['quantity'];?></td>
-								<td>$ <?php echo $product['pret'];?></td>
-								<td>$ <?php echo number_format($product['quantity'] * $product['pret'],2);?></td>
+								<td><?php echo $product['pret'];?> Lei</td>
+								<td><?php echo number_format($product['quantity'] * $product['pret'],2);?> Lei</td>
 								<td>
 									<a href="AfisareCarti.php?action=delete$id=<?php echo $product['id']; ?>">
 										<div class="btn-danger">Remove</div>
@@ -127,7 +149,7 @@ function pre_r($array){
 							?>
 							<tr>
 								<td colspan = "3" align="right">Total </td>
-								<td align="right">$<?php echo number_format($total,2);?></td>
+								<td align="right"><?php echo number_format($total,2);?> Lei</td>
 								<td></td>
 							</tr>
 							<tr>
@@ -137,7 +159,7 @@ function pre_r($array){
 										if(isset($_SESSION['shopping_cart'])):
 										if(count($_SESSION['shopping_cart']) > 0):
 									  ?>
-									   <a href="#" class="button">Checkout</a>
+									   <a href="#" class="btn btn-info" style="float: : right;">Checkout</a>
 									   <?php endif; endif;?>
 								</td>
 							</tr>
