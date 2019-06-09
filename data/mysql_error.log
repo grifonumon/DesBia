@@ -247,3 +247,27 @@ Version: '10.1.40-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribut
 2019-06-05 23:09:26 4828 [Note] Server socket created on IP: '::'.
 2019-06-05 23:09:27 4828 [Note] c:\xampp\mysql\bin\mysqld.exe: ready for connections.
 Version: '10.1.40-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribution
+2019-06-07 15:31:15 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2019-06-07 15:31:15 0 [Note] InnoDB: Uses event mutexes
+2019-06-07 15:31:15 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2019-06-07 15:31:15 0 [Note] InnoDB: Number of pools: 1
+2019-06-07 15:31:15 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2019-06-07 15:31:15 0 [Note] InnoDB: Initializing buffer pool, total size = 16M, instances = 1, chunk size = 16M
+2019-06-07 15:31:15 0 [Note] InnoDB: Completed initialization of buffer pool
+2019-06-07 15:31:15 0 [Note] InnoDB: Upgrading redo log: 2*5242880 bytes; LSN=1889469
+2019-06-07 15:31:15 0 [Note] InnoDB: Starting to delete and rewrite log files.
+2019-06-07 15:31:15 0 [Note] InnoDB: Setting log file C:\xampp\mysql\data\ib_logfile101 size to 5242880 bytes
+2019-06-07 15:31:15 0 [Note] InnoDB: Setting log file C:\xampp\mysql\data\ib_logfile1 size to 5242880 bytes
+2019-06-07 15:31:15 0 [Note] InnoDB: Renaming log file C:\xampp\mysql\data\ib_logfile101 to C:\xampp\mysql\data\ib_logfile0
+2019-06-07 15:31:15 0 [Note] InnoDB: New log files created, LSN=1889469
+2019-06-07 15:31:16 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2019-06-07 15:31:16 0 [Note] InnoDB: Creating sys_virtual system tables.
+2019-06-07 15:31:16 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2019-06-07 15:31:16 0 [Note] InnoDB: Setting file 'C:\xampp\mysql\data\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2019-06-07 15:31:16 0 [Note] InnoDB: File 'C:\xampp\mysql\data\ibtmp1' size is now 12 MB.
+2019-06-07 15:31:16 0 [Note] InnoDB: Waiting for purge to start
+2019-06-07 15:31:16 0 [Note] InnoDB: 10.3.15 started; log sequence number 1889469; transaction id 8436
+2019-06-07 15:31:16 0 [Note] InnoDB: Loading buffer pool(s) from C:\xampp\mysql\data\ib_buffer_pool
+2019-06-07 15:31:16 0 [Note] InnoDB: Cannot open 'C:\xampp\mysql\data\ib_buffer_pool' for reading: No such file or directory
+2019-06-07 15:31:16 0 [Note] Plugin 'FEEDBACK' is disabled.
+2019-06-07 15:31:16 0 [Note] Server socket created on IP: '::'.
