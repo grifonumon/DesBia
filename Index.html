@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html>
 <head>
-    <link rel="stylesheet" href="StyleMenu.css">
-    <title>Main Page</title>
-	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-</head>
+	<link rel="stylesheet" href="StyleMenu.css">
+	<title>Acasa</title>
+	
+	<style>
+	.container { width: 900px; margin: auto; padding-top: 1em; }
+	.container .ism-slider { margin-left: auto; margin-right: auto; }
+	</style>
 
-<body class=menuBody>
-    <div class="sandbox sandbox-titlu">
+	<link rel="stylesheet" href="css/my-slider.css"/>
+	<script src="js/ism-2.2.min.js"></script>
+	</head>
+<body style="background-image: linear-gradient(to left bottom, white 0%, grey 100%);>
+ <div class="sandbox sandbox-titlu">
         <h1 class="heading-titlu">
             <em>Librarie</em>
             Online
@@ -16,7 +22,7 @@
     <nav>
         <ul id="nav">
             <li>
-                <a href="Home.html">Home</a>
+                <a href="Index.html">Home</a>
             </li>
             <li>
                 <a href="AfisareCarti.php">Magazin</a>
@@ -29,8 +35,33 @@
             </li>
         </ul>
     </nav>
-	<div id="content"></div>
-	<script src="js/general.js"></script>
+	
+<div class='container'>
+
+<div class="ism-slider" data-transition_type="fade" data-play_type="loop" id="my-slider">
+  <ol>
+    <li>
+      <img src="Resources\Slider\s1.jpg">
+      <div class="ism-caption ism-caption-0"></div>
+    </li>
+    <li>
+      <img src="Resources/Slider/s2.jpg">
+      <div class="ism-caption ism-caption-0"></div>
+    </li>
+    <li>
+      <img src="Resources\Slider\s3.jpg">
+      <div class="ism-caption ism-caption-0"></div>
+    </li>
+  </ol>
+</div>
+
+<div align="center" style="background-color: #52616a; border-radius: 10px; margin-bottom: 10px">
+<h1>Magazin online!</h1>
+<h2>Dorinta de a cunoaste este mult mai puternica decat dorinta de a trai - Stephen Hawking</h2>
+<h3>Site-ul Libraria online este destinat in mare parte cunoscatorilor de cosmologie si filosofie,ce nu isi pot colecta informatiile de la orice sursa web sau in magazine,privind ori lipsa materialelor sau a interesului populatiei a acestor subiecte ori preturile oferite ce influenteaza cererea de pe piata.</h3>
     
-	</body>
+    
+    <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=brasov&t=k&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.pureblack.de"></a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>Web design by <a href="https://www.yellowrocketagency.com">YellowRocketAgency</a></div>
+</div>
+</body>
 </html>

@@ -1,16 +1,20 @@
 <?php
 session_start();
-$product_ids = array();
-//session_destroy();
+if isset($_SESSION['shopping_cart'])
+	{
+	  $product_ids = unserialize($_SESSION['shopping_cart']);
+
+}
+
+
+
 
 //check if card button have been submited
 if(filter_input(INPUT_POST, 'add_to_cart')){
 	if(isset($_SESSION['shopping_cart'])){
 	    //keep track of number of item in cart
-		$count = count($_SESSION['shopping_cart']);
+		$count = count($product_ids);
 
-		//create sequental array to match array key to products id's
-		$product_ids = array_column($_SESSION['shopping_cart'], 'id');
 
         
 		if(!in_array(filter_input(INPUT_GET, 'id'),$product_ids)){
@@ -55,8 +59,9 @@ if(filter_input(INPUT_GET, 'action') == 'delete'){
 	//reset array key so they mach with $product_ids numeric array
 	$_SESSION['shopping_cart'] = array_values($_SESSION['shopping_cart']);
 }
-
-
+unset($_SESSION['shopping_cart']);
+$_SESSION['shopping_cart'] = serialize($product_ids);
+session_destroy();
 //pre_r($_SESSION);
 
 function pre_r($array){
@@ -73,13 +78,13 @@ function console_log( $data ){
 ?>
 
 <!DOCTYPE html>
-<html">
+<html>
 	<head>
 		<title>Selectare carti</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="Css/StyleMenu.css" />
 	</head>
-	<body style="background-image: linear-gradient(to left bottom, white 0%, grey 100%);">
+	<body background="">
 	 <div class="sandbox sandbox-titlu">
 	        <h1 class="heading-titlu">
 	            <em>Librarie</em>
@@ -119,14 +124,14 @@ function console_log( $data ){
 							?>
 								<div class="col-sm-4 col-md-3">
 									<form method="post" action="AfisareCarti.php?action=add&id=<?php echo $product['id']; ?>">
-										<div class="products" align="center" style="background-color: #52616a; border-radius: 10px; margin-bottom: 10px">
-											<img src="<?php echo $product['imagine'];?>.jpg" class="img-responsive" style="padding-left: 5px; padding-right: 5px; padding-top: 5px;"/>
-											<h4 class="text-info" style="text-align: center; color: #1e2022"><?php echo $product['nume']; ?></h4>
+										<div class="products" >
+											<img src="<?php echo $product['imagine'];?>.jpg" class="img-responsive" />
+											<h4 class="text-info" style="text-align: center;"><?php echo $product['nume']; ?></h4>
 											<h4 style="text-align: right;"><?php echo $product['pret']; ?>Lei</h4>
 											<input type="text" name="quantity" class="form-control" value="1" />
 											<input type="hidden" name="nume" value="<?php echo $product['nume'];?>" />
 											<input type="hidden" name="pret" value="<?php echo $product['pret'];?>" />
-											<div align="center"><input type="submit" name="add_to_cart" style="margin-top:5px; margin-bottom: 5px;" class="btn btn-info"
+											<div align="center"><input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
 													value="Adauga in cos" /></div>
 										</div>
 									</form>
@@ -139,7 +144,7 @@ function console_log( $data ){
                 </div>
 			<div style="clear:both"></div>
 			<br />
-			<div class="table-responsive" align="center" style="background-color: #52616a; border-radius: 10px; margin-bottom: 10px">
+			<div class="table-responsive">
 				<table class = "table">
 					<tr><th colspan="5"><h3>Detali comanda</h3></th></tr>
 					<tr>
@@ -163,7 +168,7 @@ function console_log( $data ){
 								<td><?php echo number_format($product['quantity'] * $product['pret'],2);?> Lei</td>
 								<td>
 									<a href="AfisareCarti.php?action=delete$id=<?php echo $product['id']; ?>">
-										<div class="btn-danger">Sterge</div>
+										<div class="btn-danger">Remove</div>
 									</a>
 								</td>
 							</tr>
@@ -178,12 +183,12 @@ function console_log( $data ){
 							</tr>
 							<tr>
 								<!-- Show checkout button only if shoping cart is not empty-->
-								<td colspan="5" align="right">
+								<td colspan="5">
 									<?php
 										if(isset($_SESSION['shopping_cart'])):
 										if(count($_SESSION['shopping_cart']) > 0):
 									  ?>
-									   <a href="#" class="btn btn-info">Checkout</a>
+									   <a href="#" class="btn btn-info" style="float: : right;">Checkout</a>
 									   <?php endif; endif;?>
 								</td>
 							</tr>
