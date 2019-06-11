@@ -1,7 +1,7 @@
 <?php
 session_start();
 $product_ids = array();
-//session_destroy();
+session_destroy();
 
 //check if card button have been submited
 if(filter_input(INPUT_POST, 'add_to_cart')){
@@ -77,7 +77,7 @@ function console_log( $data ){
 	<head>
 		<title>Selectare carti</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="Css/AfisareCarti.css" />
+		<link rel="stylesheet" href="Css/StyleMenu.css" />
 	</head>
 	<body>
 		<div class="container">
