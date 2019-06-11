@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="StyleMenu.css">
 <meta charset="UTF-8">
 <style>
 div#test{ border:#000 1px solid; padding:10px 40px 40px 40px; }
@@ -8,10 +9,10 @@ div#test{ border:#000 1px solid; padding:10px 40px 40px 40px; }
 <script>
 var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
 var questions = [
-    [ "10 + 4?", "12", "14", "16", "B" ],
-	[ "20 - 9?", "7", "13", "11", "C" ],
-	[ "7 x 3?", "21", "24", "25", "A" ],
-	[ "8 / 2?", "10", "2", "4", "C" ]
+    [ "Ce reprezintă cuvântul cosmologie? ", "Lume+Știință", "Religie+Imaginație", "Știință+Filosofie", "A" ],
+	[ "Cine este cel mai mare filozof?", "Aristotel", "Emmanuel Kant", "Friedrich Nietzeche", "A" ],
+	[ "Ce procentaj din univers este reprezentat doar de materia neagra?", "10%", "73%", "65%", "B" ],
+	[ "Ce reprezinta conceptul de solipsism?", "Un principiu etic ce exlude delimitarea celor două noțiuni și existența normelor morale fixe de orice fel.", "O metodă de autocunoaștere și reprezintă un proces în decursul căruia omul analizează propriile sale reacții la factorii externi.", "O atitudine conceptuală extremă care declară că numai propria individualitate există, iar restul sunt reflectări modale în personalitate.", "C" ]
 ];
 function _(x){
 	return document.getElementById(x);
@@ -34,7 +35,7 @@ function renderQuestion(){
 	test.innerHTML += "<input type='radio' name='choices' value='A'> "+chA+"<br>";
 	test.innerHTML += "<input type='radio' name='choices' value='B'> "+chB+"<br>";
 	test.innerHTML += "<input type='radio' name='choices' value='C'> "+chC+"<br><br>";
-	test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+	test.innerHTML += "<button onclick='checkAnswer()'>Raspuns Final</button>";
 }
 function checkAnswer(){
 	choices = document.getElementsByName("choices");
@@ -53,7 +54,7 @@ window.addEventListener("load", renderQuestion, false);
 </script>
 </head>
 <body>
-<h2 id="test_status"></h2>
-<div id="test"></div>
+<h2 id="test_status" align="center"></h2>
+<div id="test" align="center"></div>
 </body>
 </html>

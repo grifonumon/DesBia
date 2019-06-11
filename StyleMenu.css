@@ -88,3 +88,8 @@ nav ul li a:hover {
     background: rgba(255, 255, 255, 0.1);
     color: saddlebrown;
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
