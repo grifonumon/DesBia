@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 div#test{ border:#000 1px solid;}
 </style>
 <script>
+	
 var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
 var questions = [
     [ "Ce reprezinta cuvantul cosmologie? ", "Lume+Stiinta", "Religie+Imaginatie", "Stiinta+Filosofie", "A" ],
@@ -43,9 +45,12 @@ function checkAnswer(){
 		if(choices[i].checked){
 			choice = choices[i].value;
 		}
+		
 	}
 	if(choice == questions[pos][4]){
 		correct++;
+	if(correct == choices.length - 1)
+		Var.innerHTML = "<? $_SESSION['userID']=1; ?>";
 	}
 	pos++;
 	renderQuestion();
@@ -78,7 +83,21 @@ window.addEventListener("load", renderQuestion, false);
     </nav>
 
 	
-<h2 id="test_status" align="center"></h2>
-<div id="test" align="center"></div>
+
+	<?php
+	echo $_SESSION['userID'];
+	 if(isset($_SESSION['userID'])){ 
+		if($_SESSION['userID'] == 1){?>
+			<h3>Raspuns deja fuck off! </h3>
+	<?php }} ?>
+
+
+ 	<h2 id="test_status" align="center"></h2>; 
+ 	<div id="test" align="center"></div>; 
+ 	<div id="Var"></div>;
+
+
+
+
 </body>
 </html>

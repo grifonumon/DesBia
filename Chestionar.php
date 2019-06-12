@@ -1,0 +1,110 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="StyleMenu.css">
+<meta charset="UTF-8">
+<style>
+div#test{ border:#000 1px solid;}
+</style>
+<?php
+if(isset($_SESSION['username']))
+  {?>
+<script>
+	
+var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
+var questions = [
+    [ "Ce reprezinta cuvantul cosmologie? ", "Lume+Stiinta", "Religie+Imaginatie", "Stiinta+Filosofie", "A" ],
+	[ "Cine este cel mai mare filozof?", "Aristotel", "Emmanuel Kant", "Friedrich Nietzeche", "A" ],
+	[ "Ce procentaj din univers este reprezentat doar de materia neagra?", "10%", "73%", "65%", "B" ],
+	[ "Ce reprezinta conceptul de solipsism?", "Un principiu etic ce exlude delimitarea celor două noțiuni și existența normelor morale fixe de orice fel.", "O metodă de autocunoaștere și reprezintă un proces în decursul căruia omul analizează propriile sale reacții la factorii externi.", "O atitudine conceptuala extrema care declara ca numai propria individualitate exista, iar restul sunt reflectari modale in personalitate", "C" ]
+];
+function _(x){
+	return document.getElementById(x);
+}
+function renderQuestion(){
+	test = _("test");
+	if(pos >= questions.length){
+		test.innerHTML = "<h2>Ai raspuns corect la "+correct+" din "+questions.length+" intrebari </h2>";
+		_("test_status").innerHTML = "Test complet!";
+		pos = 0;
+		correct = 0;
+		return false;
+	}
+	_("test_status").innerHTML = "Intrebarea "+(pos+1)+" din "+questions.length;
+	question = questions[pos][0];
+	chA = questions[pos][1];
+	chB = questions[pos][2];
+	chC = questions[pos][3];
+	test.innerHTML = "<h3>"+question+"</h3>";
+	test.innerHTML += "<input type='radio' name='choices' value='A'> "+chA+"<br>";
+	test.innerHTML += "<input type='radio' name='choices' value='B'> "+chB+"<br>";
+	test.innerHTML += "<input type='radio' name='choices' value='C'> "+chC+"<br><br>";
+	test.innerHTML += "<button onclick='checkAnswer()'>Raspuns Final</button>";
+}
+function checkAnswer(){
+	choices = document.getElementsByName("choices");
+	for(var i=0; i<choices.length; i++){
+		if(choices[i].checked){
+			choice = choices[i].value;
+		}
+		
+	}
+	if(choice == questions[pos][4]){
+		correct++;
+	if(correct == choices.length + 1)
+		document.location.href = "chestionarComplet.php";
+	}
+	pos++;
+	renderQuestion();
+}
+window.addEventListener("load", renderQuestion, false);
+</script>
+<?php }?>
+</head>
+<body style="background-image: linear-gradient(to left bottom, white 0%, grey 100%);>
+ <div class="sandbox sandbox-titlu">
+        <h1 class="heading-titlu">
+            <em>Librarie</em>
+            Online
+        </h1>
+    </div>
+    <nav>
+        <ul id="nav">
+            <li>
+                <a href="Index.html">Home</a>
+            </li>
+            <li>
+                <a href="AfisareCarti.php">Magazin</a>
+            </li>
+            <li>
+                <a href="Chestionar.php">Chestionar Reducere</a>
+            </li>
+            <li>
+                <a href="form.php">Autentificare</a>
+            </li>
+        </ul>
+    </nav>
+
+	
+	<?php
+	if(!isset($_SESSION['username']))
+		echo "<h1>TREBUIE SA FITI LOGAT!</h1>";
+
+
+	 if(isset($_SESSION['chestionarComplet'])){ 
+		if($_SESSION['chestionarComplet'] == 1){
+			?>
+			 <script>document.location.href = "chestionarComplet.php";</script>
+			<?php echo  $_SESSION['chestionarComplet']; ?>
+	<?php }} ?>
+
+ 	<h2 id="test_status" align="center"></h2>
+ 	<div id="test" align="center"></div>
+ 	<div id="Var"></div>
+
+
+
+
+</body>
+</html>

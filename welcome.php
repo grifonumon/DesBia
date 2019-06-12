@@ -19,7 +19,7 @@
                 <a href="AfisareCarti.php">Magazin</a>
             </li>
             <li>
-                <a href="Chestionar.html">Chestionar Reducere</a>
+                <a href="Chestionar.php">Chestionar Reducere</a>
             </li>
             <li>
                 <a href="form.php">Autentificare</a>
@@ -32,6 +32,10 @@
 		<div class="alert alert-success"><?= $_SESSION['message'] ?></div>
 		<span class="user"><img src='<?= $_SESSION['avatar'] ?>' height="100px" width="auto"></span><br />
 		Bun venit <span class="user"><?=$_SESSION['username'] ?> </span>
+		<button onclick="location.href='logout.php'" type="button">Logout</button>
 	</div>
 </div>
+
+<?php echo  $_SESSION['chestionarComplet']; ?>
+
 </body>

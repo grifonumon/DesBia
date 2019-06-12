@@ -20,11 +20,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
           $_SESSION['username'] = $username;
           $_SESSION['avatar'] = $avatar_path;
 
-          $sql = "INSERT INTO users (username, email, password, avatar) "
-                ."VALUES('$username','$email','$password','$avatar_path')";
+          $sql = "INSERT INTO users (username, email, password, avatar,reducere) "
+                ."VALUES('$username','$email','$password','$avatar_path',0)";
           //if the query is succesful, redirect to first page
           if($mysqli->query($sql) === true){
             $_SESSION['message'] = 'Registration succesful! Added $username to the database!';
+            $_SESSION['chestionarComplet'] = 0;
             header("location: welcome.php");
           }
           else{
@@ -49,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <link rel="stylesheet" href="StyleMenu.css">
 <link rel="stylesheet" href="form.css">
 
-<body style="background-image: linear-gradient(to left bottom, white 0%, grey 100%);>
+<body style="background-image: linear-gradient(to left bottom, white 0%, grey 100%); font-family: ">
  <div class="sandbox sandbox-titlu">
         <h1 class="heading-titlu">
             <em>Librarie</em>
@@ -65,13 +66,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <a href="AfisareCarti.php">Magazin</a>
             </li>
             <li>
-                <a href="Chestionar.html">Chestionar Reducere</a>
+                <a href="Chestionar.php">Chestionar Reducere</a>
             </li>
             <li>
                 <a href="form.php">Autentificare</a>
             </li>
         </ul>
     </nav>
+
+<?php 
+  if(isset($_SESSION['username'])){ ?>
+       <script>document.location.href = "welcome.php";</script> ;    
+<?php }?>
 
 <div class="body-content">
   <div class="module" align="Center" style="background-color:#7D7D7D7D; border-radius:10px;">
@@ -84,7 +90,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       <input type="password" placeholder="Confirmare Parola" name="confirmpassword" autocomplete="new-password" required />
       <div class="avatar"><label style="color: black;">Selectare imagine: </label><input type="file" name="avatar" accept="image/*" required /></div>
       <input type="submit" value="Inregistrare" name="register" class="btn btn-block btn-primary" />
-       <input type="submit" value="Logare" name="login" class="btn btn-block btn-primary" />
+      <br>
+      <h5 style="color: #000000">Deja ai cont? Logheaza-te.</h5>
+      <a href="logare.php">
+        <input type="button" value="Logare" name="login" class="btn btn-block btn-primary" style='text-decoration:none;'/>
+      </a>
     </form>
   </div>
 </div>
